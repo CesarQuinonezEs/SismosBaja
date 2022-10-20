@@ -50,16 +50,8 @@ for i in dataYear10.Fecha:
                 listAux.append(aux2)
         else:
             listAux.append(aux2)
-    elif(i >= '2010-04-01')and(i <= '2010-04-05'):
-        aux = dataYear10.Fecha[i]
-        aux2 = aux.iloc[0]['Magnitud']
-        print(aux2,i)
-        if len(listAux) > 3:
-            if listAux[len(listAux)-1] < aux2:
-                listAux.pop()
-                listAux.append(aux2)
-        else:
-            listAux.append(aux2)
+    elif(i >= '2010-04-01')and(i <= '2010-04-31') and 7.2 not in listAux:
+        listAux.append(7.2)
     elif(i >= '2010-05-01')and(i <= '2010-05-31'):
         aux = dataYear10[(dataYear10.Fecha == i)]
         aux2 = aux.iloc[0]['Magnitud']
@@ -133,10 +125,20 @@ for i in dataYear10.Fecha:
         else:
             listAux.append(aux2)
     j = j + 1   
-print(listAux)
 
-#plt.plot(dataYear10['Fecha'],dataYear10['Magnitud'])
-#dataSet.plot.scatter(x='Fecha',y ='Magnitud')
+        
+print(len(listAux))
+dateList = ['Enero', 'Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Nombrie','Diciembre']
+plt.plot(dateList,listAux)
+dataByYear = {
+    'Fecha':dateList,
+    'Magnitud':listAux
+}
+df = pd.DataFrame(dataByYear)
+df.to_latex('./assets/2010ForMonth.tex',index=False)
+plt.title("Sismo mas grande de cada mes en el año 2010")
+#plt.(dataYear10['Fecha'],dataYear10['Magnitud'])
+#ataSet.plot.scatter(x='Fecha',y ='Magnitud')
 
-dataYear10[(dataYear10.Fecha>= '2010-04-01')&(dataYear10.Fecha <= '2010-04-31')].plot.scatter(x='Fecha',y ='Magnitud')
+#dataYear10[(dataYear10.Fecha>= '2010-04-01')&(dataYear10.Fecha <= '2010-04-31')].plot.scatter(x='Fecha',y ='Magnitud')
 plt.show()

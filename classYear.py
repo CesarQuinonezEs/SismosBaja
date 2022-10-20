@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 yearsData = []
-dataSet = pd.read_csv('datos.csv',usecols=['Fecha','Magnitud','Latitud','Longitud'],sep=',',index_col='Fecha')
+dataSet = pd.read_csv('datos.csv',usecols=['Fecha','Magnitud','Latitud','Longitud'],sep=',')
 #print(dataSet.loc['2009-09-19':'2009-12-30'])
 yearsData.append(dataSet.loc['2000-01-01':'2000-12-31'])
 yearsData.append(dataSet.loc['2001-01-01':'2001-12-31'])
