@@ -5,13 +5,18 @@ dataSet = pd.read_csv('assets/datosDistHeu.csv',sep=',')
 asignados = []
 fallas = [dataSet['Dist_vallecitos'],dataSet['Dist_AguaBlanca'],dataSet['Dist_LagunaSalada'],dataSet['Dist_SanMiguel'],dataSet['Dist_cerroPrieto']]
 
-
+coorVallecitos = [32.22,-116.54]
+coorAguaBlanca = [31.6, -116.53]
+coorLagunaSa = [32.360320206798384, -115.65058167215838]
+coorSanMiguel=[32.0290495918323, -116.35614222296115]
+coorPrieto=[32.33181037749735, -115.25019460694705]
+coorFallas = [coorVallecitos,coorAguaBlanca,coorLagunaSa,coorSanMiguel,coorPrieto]
 for i,dist in enumerate(fallas):
     mag = []
     lat = []
     lon = []
     date = []
-    print(dist[0])
+    #print(dist[0])
     for j in range(len(dist)):
         isInTarget = False
         isAsig = False
@@ -20,11 +25,15 @@ for i,dist in enumerate(fallas):
                 aux = dist[j]
             else:
                 if(aux < dataSet.iloc[j,k+4]):
+                    if(dataSet.iloc[j,2] < coorFallas[k][0] + 2 and dataSet.iloc[j,2] > coorFallas[k][0] - 2 ) and (dataSet.iloc[j,3] < coorFallas[k][1] + 2 and dataSet.iloc[j,3] > coorFallas[k][1] - 2 ):
                     #print(aux, " es menor que ", dataSet.iloc[j,k+4])
-                    isInTarget = True
+                        isInTarget = True
+                    else:
+                        isInTarget = False
                 else:
                     #print(aux, " es mayor que ", dataSet.iloc[j,k+4])
                     isInTarget = False
+
         if isInTarget:
             if  j not in asignados:
                 #print(j)

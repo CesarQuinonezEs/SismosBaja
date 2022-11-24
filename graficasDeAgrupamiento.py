@@ -11,13 +11,13 @@ index = [coorVallecitos,coorAguaBlanca,coorLagunaSa]
 colors = ["#4EACC5", "#FF9C34", "#4E9A06",]
 plt.figure(1)
 fallas = [dataSetVll,dataSetAg,dataSetLag]
+fallasLabel = ["Vallecitos", "Agua Blanca", "Laguna salada"]
 for i,j in enumerate(fallas):
-    for k in j:
-        plt.scatter(j['Latitud'],j['Longitud'],c=colors[i], marker=".", s=10)
-
+    plt.scatter(j['Latitud'],j['Longitud'],c=colors[i], marker=".", s=10, label=fallasLabel[i])
 for i in index:
    plt.scatter(i[0],i[1],c="b", marker=".", s=10)
-plt.title("Agrupamiento de cada sismo")
+plt.title("Agrupamiento por cada falla")
 plt.xticks([])
 plt.yticks([])
+plt.legend()
 plt.show()
