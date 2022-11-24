@@ -22,7 +22,7 @@ for j in fallas:
             latAux = j.iloc[i,2]
             lonAux = j.iloc[i,3]
         else:
-            if(aux < j.iloc[i,1]):
+            if(aux > j.iloc[i,1]):
                 aux = j.iloc[i,1]
                 dateAux = j.iloc[i,0]
                 magAux = aux
@@ -39,5 +39,5 @@ dataHeight = pd.DataFrame({'Falla': ['vallecitos','Agua blanca','Laguna salada']
                            'longitud':lon
                           })
 print(dataHeight)
-dataHeight.to_csv('assets/highestData.csv',index=False)
-dataHeight.to_latex('assets/highestData.tex',index=False)
+dataHeight.to_csv('assets/shortestData.csv',index=False)
+dataHeight.to_latex('assets/shortestData.tex',index=False)
